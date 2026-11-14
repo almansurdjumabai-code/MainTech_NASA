@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lunar Landing Site Navigator — 3D</title>
+    <style>
+      :root {
+        --panel: rgba(10, 13, 19, 0.86);
+        --line: rgba(255, 255, 255, 0.1);
+        --fg: #e9edf2;
+        --muted: #8e99a8;
+        --sun: #ffd23f;
+        --sky: #67d4ff;
+      }
+      html, body { margin: 0; height: 100%; background: #000; color: var(--fg); font: 13px/1.4 system-ui, 'Segoe UI', sans-serif; }
+      #scene { position: relative; width: 100%; height: 100%; overflow: hidden; }
+      /* временная консоль 3D — UI Участника 3 заменит её, используя тот же API */
+      .console {
+        position: absolute; z-index: 3; left: 12px; top: 12px; width: 236px; max-height: calc(100% - 110px); overflow: auto;
+        background: var(--panel); border: 1px solid var(--line); padding: 10px; display: grid; gap: 10px;
+      }
+      .console h1 { margin: 0; font: 600 13px system-ui; letter-spacing: 0.02em; }
+      .console h1 span { color: var(--muted); font-weight: 400; }
+      .group { display: grid; gap: 5px; }
+      .group > label { font: 500 10px ui-monospace, Consolas, monospace; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+      .row { display: flex; flex-wrap: wrap; gap: 4px; }
+      button, select {
+        font: 12px system-ui, sans-serif; color: var(--fg); background: rgba(255, 255, 255, 0.06);
+        border: 1px solid var(--line); padding: 4px 8px; cursor: pointer;
+      }
+      button:hover { background: rgba(255, 255, 255, 0.14); }
+      button.on { border-color: var(--sun); color: var(--sun); }
+      button.primary { border-color: var(--sky); color: var(--sky); }
+      button:focus-visible, select:focus-visible { outline: 2px solid var(--sky); outline-offset: 1px; }
+      select { width: 100%; }
+      .info { font: 11px/1.5 ui-monospace, Consolas, monospace; color: var(--muted); white-space: pre-wrap; }
+      .timeline {
+        position: absolute; z-index: 3; left: 12px; right: 12px; bottom: 12px; display: flex; gap: 10px; align-items: center; flex-wrap: wrap;
+        padding: 8px 12px; background: var(--panel); border: 1px solid var(--line);
+      }
+      .timeline input[type=range] { flex: 1; min-width: 160px; accent-color: var(--sun); }
+      .timeline code { font: 12px ui-monospace, Consolas, monospace; }
+      .timeline .muted { color: var(--muted); }
+      @media (max-width: 640px) { .console { width: auto; right: 12px; max-height: 45%; } }
+    </style>
+  </head>
+  <body>
+    <div id="scene"></div>
+
+    <aside class="console" aria-label="3D dev console">
+      <h1>MoonScene <span>· dev console</span></h1>
+      <div class="group">
+        <label>Site</label>
+        <select id="site"></select>
+        <div class="row">
+          <button data-act="fly">Fly to</button>
+          <button data-act="surface">Surface view</button>
+          <button data-act="land" class="primary">Simulate landing</button>
+        </div>
+      </div>
+      <div class="group">
+        <label>View</label>
+        <div class="row" id="views">
+          <button data-view="globe" class="on">Globe</button>
+          <button data-view="polar">South Pole</button>
+        </div>
+      </div>
+      <div class="group">
+        <label>Layer</label>
+        <div class="row" id="layers">
+          <button data-layer="relief" class="on">Relief</button>
+          <button data-layer="slope">Slope</button>
+          <button data-layer="illumination">Sunlight %</button>
+          <button data-layer="comms">Earth link %</button>
+        </div>
+      </div>
+      <div class="group">
+        <label>Schedule slip</label>
+        <div class="row">
+          <button data-act="compare">A/B: +12 days</button>
+          <button data-act="compareSite">A/B: neighbour site</button>
+          <button data-act="timelapse">Time-lapse lunar day</button>
+        </div>
+      </div>
+      <div class="group">
+        <label>Earthshine</label>
+        <div class="row" id="earthshine">
+          <button data-shine="enhanced" class="on">Enhanced ×150</button>
+          <button data-shine="physical">Physical</button>
+        </div>
+      </div>
+      <div class="group">
+        <label>Demo</label>
+        <div class="row"><button data-act="demo" class="primary">▶ Run demo script</button><a href="/models.html" style="color:var(--sky);align-self:center">3D models →</a></div>
+      </div>
+      <div class="info" id="info"></div>
+    </aside>
+
+    <div class="timeline">
+      <button id="play" aria-label="Play">▶</button>
+      <input id="time" type="range" min="0" max="708" step="0.25" value="0" aria-label="Time within lunar day" />
+      <code id="date"></code>
+      <code id="fps" class="muted"></code>
+    </div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

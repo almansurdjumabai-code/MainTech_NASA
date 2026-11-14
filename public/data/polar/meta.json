@@ -1,0 +1,40 @@
+{
+  "source": "LOLA LDEM_80S_80M (PDS LRO-L-LOLA-3-RDR-V1, NASA GSFC), 80 m/px",
+  "projection": "south polar stereographic, sphere R=1737.4 km, center lat -90 lon 0",
+  "formula": "x = 2R tan(pi/4 + lat/2) sin(lon); y = 2R tan(pi/4 + lat/2) cos(lon); lon east",
+  "layout": "row 0 = +y (top), col 0 = -x (left); pixel centers span [-halfExtent, +halfExtent]",
+  "refRadiusKm": 1737.4,
+  "halfExtentKm": 200,
+  "heightUnits": "meters relative to refRadius, float32 little-endian",
+  "slopeUnits": "degrees * 4, uint8 (mean of 80 m baseline slope within pixel)",
+  "levels": {
+    "512": {
+      "file": "height_512.i16",
+      "dtype": "int16",
+      "scale": 0.5,
+      "size": 512,
+      "pixelKm": 0.78125,
+      "minHeight": -5472.4150390625,
+      "maxHeight": 7002.39453125
+    },
+    "2048": {
+      "file": "height_2048.i16",
+      "size": 2048,
+      "dtype": "int16",
+      "scale": 0.5,
+      "pixelKm": 0.1953125,
+      "minHeight": -5497.125,
+      "maxHeight": 7025
+    }
+  },
+  "slope": {
+    "file": "slope_1024.u8",
+    "size": 1024
+  },
+  "normal": {
+    "file": "normal_4096.jpg",
+    "fileLow": "normal_2048.jpg",
+    "size": 4096,
+    "axes": "R = +x map, G = +y map, B = up; from 80 m DEM"
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "source": "LOLA LDEM_85S_20M (PDS LRO-L-LOLA-3-RDR-V1), 20 m/px",
+  "patches": {
+    "artemis-malapert-massif": {
+      "file": "patches/artemis-malapert-massif.i16",
+      "size": 768,
+      "dtype": "int16",
+      "scale": 0.5,
+      "centerKm": [
+        6.12,
+        121.2
+      ],
+      "halfExtentKm": 9.0,
+      "minHeight": 1160.0,
+      "maxHeight": 5173.5
+    },
+    "artemis-mons-mouton": {
+      "file": "patches/artemis-mons-mouton.i16",
+      "size": 768,
+      "dtype": "int16",
+      "scale": 0.5,
+      "centerKm": [
+        84.38,
+        140.48
+      ],
+      "halfExtentKm": 9.0,
+      "minHeight": 4535.5,
+      "maxHeight": 5968.5
+    },
+    "artemis-nobile-rim-1": {
+      "file": "patches/artemis-nobile-rim-1.i16",
+      "size": 768,
+      "dtype": "int16",
+      "scale": 0.5,
+      "centerKm": [
+        81.96,
+        89.48
+      ],
+      "halfExtentKm": 9.0,
+      "minHeight": 447.5,
+      "maxHeight": 4726.0
+    },
+    "artemis-de-gerlache-rim-2": {
+      "file": "patches/artemis-de-gerlache-rim-2.i16",
+      "size": 768,
+      "dtype": "int16",
+      "scale": 0.5,
+      "centerKm": [
+        -49.98,
+        2.54
+      ],
+      "halfExtentKm": 9.0,
+      "minHeight": -2356.0,
+      "maxHeight": 74.0
+    },
+    "clps-im-2-athena": {
+      "file": "patches/clps-im-2-athena.i16",
+      "size": 768,
+      "dtype": "int16",
+      "scale": 0.5,
+      "centerKm": [
+        77.1,
+        138.0
+      ],
+      "halfExtentKm": 9.0,
+      "minHeight": 4771.25,
+      "maxHeight": 6094.0
+    }
+  }
+}
